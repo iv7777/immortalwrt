@@ -1,0 +1,37 @@
+--- a/arch/arm/boot/dts/bcm4708-linksys-ea6300-v1.dts	2024-04-07 21:34:04.790017000 -0700
++++ b/arch/arm/boot/dts/bcm4708-linksys-ea6300-v1.dts	2024-04-07 21:54:37.279035000 -0700
+@@ -21,6 +21,15 @@
+ 		reg = <0x00000000 0x08000000>;
+ 	};
+ 
++ 	leds { 
++ 	       compatible = "gpio-leds"; 
++ 	       power { 
++ 	            label = "bcm53xx:green:power"; 
++ 	            gpios = <&chipcommon 8 GPIO_ACTIVE_HIGH>; 
++ 	            linux,default-trigger = "default-on"; 
++ 	       }; 
++ 	}; 
++	
+ 	nvram@1c080000 {
+ 		compatible = "brcm,nvram";
+ 		reg = <0x1c080000 0x180000>;
+
+--- a/arch/arm/boot/dts/bcm4708-linksys-ea6500-v2.dts	2024-04-07 21:34:04.790017000 -0700
++++ b/arch/arm/boot/dts/bcm4708-linksys-ea6500-v2.dts	2024-04-07 21:58:58.369383000 -0700
+@@ -22,7 +22,14 @@
+ 		reg = <0x00000000 0x08000000>,
+ 		      <0x88000000 0x08000000>;
+ 	};
+-
++	leds { 
++ 	       compatible = "gpio-leds"; 
++ 	       power { 
++ 	            label = "bcm53xx:green:power"; 
++ 	            gpios = <&chipcommon 8 GPIO_ACTIVE_HIGH>; 
++ 	            linux,default-trigger = "default-on"; 
++ 	       }; 
++ 	};
+ 	gpio-keys {
+ 		compatible = "gpio-keys";
+ 
