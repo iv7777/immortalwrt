@@ -43,6 +43,10 @@ redmi,ax6|\
 redmi,ax6-stock)
 	ucidef_set_led_netdev "wan" "WAN" "blue:network" "wan"
 	;;
+spectrum,sax1v1k)
+	ucidef_set_led_netdev "wan-port-link-green" "WAN-PORT-LINK-GREEN" "90000.mdio-1:1c:green:wan" "wan" "link_2500"
+	ucidef_set_led_netdev "wan-port-link-yellow" "WAN-PORT-LINK-YELLOW" "90000.mdio-1:1c:yellow:wan" "wan" "tx rx link_10 link_100 link_1000"
+	;;
 xiaomi,ax3600|\
 xiaomi,ax3600-stock)
 	ucidef_set_led_netdev "wan-port-link" "WAN-PORT-LINK" "90000.mdio-1:01:green:wan" "wan" "tx rx link_10 link_100 link_1000"
