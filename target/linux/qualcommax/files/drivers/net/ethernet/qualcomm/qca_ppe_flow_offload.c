@@ -1141,10 +1141,16 @@ static void ppe_flow_free_egress(struct qca_ppe_priv *priv,
 		ppe_uplink_put(priv, entry->uplink);
 }
 
-static bool ppe_cpu_xmit = true;
+/* Off by default in this tree. With it on, forwarded TLS flows of a Wi-Fi
+ * client behind a PPPoE WAN intermittently stalled after the TCP handshake
+ * (Spectrum SAX1V1K, IPQ8074); with it off they did not, and flows that
+ * leave through switch ports stay offloaded as before. Turn it on at run
+ * time with: echo 1 > /sys/module/qca_ppe/parameters/cpu_xmit
+ */
+static bool ppe_cpu_xmit;
 module_param_named(cpu_xmit, ppe_cpu_xmit, bool, 0644);
 MODULE_PARM_DESC(cpu_xmit,
-		 "Route flows to devices outside the switch in hardware and pass them out through the CPU port");
+		 "Route flows to devices outside the switch in hardware and pass them out through the CPU port (default: off)");
 
 /* A flow out of a device the switch cannot reach, such as a Wi-Fi interface,
  * is still routed by the PPE. Its frames come to the CPU finished, and the
